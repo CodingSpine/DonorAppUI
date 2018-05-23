@@ -1,0 +1,53 @@
+a {
+    text-decoration: none;
+}
+.login-form {
+    background: rgba(0,0,0,0.5);
+    height: 470px;
+    width: 320px;
+    border-radius: 7px;
+}
+
+%input-images {
+    background-repeat: no-repeat;
+    background-position: right 7px center;
+    border-radius: 2px;
+}
+
+input {
+    height: 35px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border: none;
+    width: 80%;
+    padding-left: 10px;
+    box-shadow:inset 0px 1px 5px rgba(0,0,0,0.15);
+}
+
+input:focus{
+  box-shadow: 0 0 10px #4A90BE;
+  border:1px solid #4A90BE;
+}
+
+input.text{
+    background-image: url(images/round-person-24px.svg);
+    @extend %input-images;
+}
+
+input.password{
+    background-image: url(images/outline-lock-24px.svg);
+    @extend %input-images;
+}
+
+.input-error {
+    align-self: flex-start;
+    color: red;
+    padding-left: 27px;
+}
+
+.login-button {
+    border-radius: 5px;
+    background-color: #fcbe08;
+    color: white;
+    font-weight: 600
+}

@@ -1,0 +1,27 @@
+
+<div fxLayout="row" fxLayoutAlign="end" fxLayoutAlign.lt-md="center">
+    <div class="login-form" *ngIf="guest.forgotPassword == false" action="" [ngStyle.gt-sm]="{'margin-right': '5%'}" fxLayout="column" fxLayoutAlign="center center">
+        <input [(ngModel)]="guest.userID" placeholder="UserID" class="text">
+        <div class="input-error">error</div>
+        <br>
+        <input [(ngModel)]="guest.password" type="password" placeholder="Password" class="password">
+        <div class="input-error">error</div>
+        <br>
+        <div style="align-self: baseline; padding-left: 27px;">
+            <a style="color: white" href="#">Forgot Password?</a>
+        </div>
+        <br>
+        <div style="align-self: flex-end; padding-right: 27px;">
+            <button class="login-button" mat-raised-button (click)="login(guest)">LOGIN</button>
+        </div>
+    </div>
+    <div class="login-form" *ngIf="guest.forgotPassword" action="" [ngStyle.gt-sm]="{'margin-right': '5%'}">
+        <input [(ngModel)]="guest.userID" placeholder="UserID" class="text">
+        <br>
+        <input [(ngModel)]="guest.password" type="password" placeholder="Password" class="password">
+        <br>
+        <a href="#">Forgot Password?</a>
+        <br>
+        <button mat-raised-button (click)="login(guest)">LOGIN</button>
+    </div>
+</div>

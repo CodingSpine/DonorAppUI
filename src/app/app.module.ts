@@ -3,19 +3,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material';
 
 import 'hammerjs';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
