@@ -1,6 +1,15 @@
 a {
     text-decoration: none;
 }
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948;
+}
+
+.ng-invalid:not(form).ng-touched  {
+  border-left: 5px solid #a94442;
+}
+
 .login-form {
     background: rgba(0,0,0,0.5);
     height: 470px;
@@ -22,14 +31,16 @@ input {
     width: 80%;
     padding-left: 10px;
     box-shadow:inset 0px 1px 5px rgba(0,0,0,0.15);
+    transition: all 0.2s ease;
 }
 
 input:focus{
   box-shadow: 0 0 10px #4A90BE;
   border:1px solid #4A90BE;
+  border-left: 5px solid #4A90BE;
 }
 
-input.text{
+input.number{
     background-image: url(images/round-person-24px.svg);
     @extend %input-images;
 }
@@ -40,14 +51,20 @@ input.password{
 }
 
 .input-error {
-    align-self: flex-start;
-    color: red;
-    padding-left: 27px;
+    text-align: left;
+    margin-top: -8px;
+    margin-bottom: 1px;
+    width: 80%;
+    padding: 7px;
 }
 
 .login-button {
     border-radius: 5px;
     background-color: #fcbe08;
     color: white;
-    font-weight: 600
+    font-weight: 600;
+}
+
+.mat-raised-button[disabled] {
+    background-color: grey;
 }

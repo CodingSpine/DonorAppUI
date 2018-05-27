@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { Guest } from '../shared/guestUser';
 
 @Component({
@@ -15,7 +17,10 @@ export class LoginComponent implements OnInit {
 
     login(guest: Guest): void {
         console.log(guest);
+        // if login successful do #loginForm.reset in html
     }
+
+    get diagnostic() { return JSON.stringify(this.guest); }
     constructor() { }
 
     ngOnInit() {

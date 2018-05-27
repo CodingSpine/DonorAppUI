@@ -1,20 +1,54 @@
 
 <div fxLayout="row" fxLayoutAlign="end" fxLayoutAlign.lt-md="center">
-    <div class="login-form" *ngIf="guest.forgotPassword == false" action="" [ngStyle.gt-sm]="{'margin-right': '5%'}" fxLayout="column" fxLayoutAlign="center center">
-        <input [(ngModel)]="guest.userID" placeholder="UserID" class="text">
-        <div class="input-error">error</div>
+    <form novalidate     class="login-form"
+                        *ngIf="guest.forgotPassword === false"
+                        #loginForm="ngForm"
+                        (ngSubmit)="login(guest)"
+                        [ngStyle.gt-sm]="{'margin-right': '10vh'}"
+                        fxLayout="column"
+                        fxLayoutAlign="center center">
+                        <!-- {{diagnostic}} -->
+        <input placeholder="UserID" class="number" required
+                type="text"
+                appOnlyNumber="\D"
+                name="userID"
+                minlength="10"
+                maxlength="10"
+                [(ngModel)]="guest.userID"
+                #userID="ngModel">
+        <div *ngIf="userID.invalid && (userID.dirty || userID.touched)" class="alert alert-danger input-error">
+            <div *ngIf="userID.errors.required">
+                User ID is required.
+            </div>
+            <div *ngIf="userID.errors.notDigits">
+                User ID should consist of only digits.
+            </div>
+            <div *ngIf="userID.errors.minlength">
+                10 digits are required.
+            </div>
+        </div>
         <br>
-        <input [(ngModel)]="guest.password" type="password" placeholder="Password" class="password">
-        <div class="input-error">error</div>
+        <input type="password" placeholder="Password" class="password" required
+                name="password"
+                [(ngModel)]="guest.password"
+                #password="ngModel">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger input-error">
+            <div *ngIf="password.errors.required">
+                Password is required.
+            </div>
+        </div>
         <br>
         <div style="align-self: baseline; padding-left: 27px;">
             <a style="color: white" href="#">Forgot Password?</a>
         </div>
         <br>
         <div style="align-self: flex-end; padding-right: 27px;">
-            <button class="login-button" mat-raised-button (click)="login(guest)">LOGIN</button>
+            <button class="login-button" type="submit"
+                    mat-raised-button
+                    [disabled]="loginForm.invalid"
+                    (click)="login(guest)">LOGIN</button>
         </div>
-    </div>
+    </form>
     <div class="login-form" *ngIf="guest.forgotPassword" action="" [ngStyle.gt-sm]="{'margin-right': '5%'}">
         <input [(ngModel)]="guest.userID" placeholder="UserID" class="text">
         <br>

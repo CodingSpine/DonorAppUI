@@ -9,11 +9,13 @@ import { MatButtonModule } from '@angular/material';
 import 'hammerjs';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { ForbiddenValidatorDirective } from './shared/only-numbers.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    ForbiddenValidatorDirective
   ],
   imports: [
     BrowserModule,
