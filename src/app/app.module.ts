@@ -10,12 +10,14 @@ import 'hammerjs';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenValidatorDirective } from './shared/only-numbers.directive';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ForbiddenValidatorDirective
+    ForbiddenValidatorDirective,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

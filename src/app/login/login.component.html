@@ -45,7 +45,7 @@
         <div style="align-self: flex-end; padding-right: 27px;">
             <button class="login-button" type="submit"
                     mat-raised-button
-                    [disabled]="loginForm.invalid"
+                    [disabled]="(userID.touched || password.touched) && loginForm.invalid"
                     (click)="login(guest)">LOGIN</button>
         </div>
     </form>
