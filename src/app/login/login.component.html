@@ -1,61 +1,61 @@
-
-<div fxLayout="row" fxLayoutAlign="end" fxLayoutAlign.lt-md="center">
-    <form novalidate     class="login-form"
-                        *ngIf="guest.forgotPassword === false"
-                        #loginForm="ngForm"
-                        (ngSubmit)="login(guest)"
-                        [ngStyle.gt-sm]="{'margin-right': '10vh'}"
-                        fxLayout="column"
-                        fxLayoutAlign="center center">
-                        <!-- {{diagnostic}} -->
-        <input placeholder="UserID" class="number" required
-                type="text"
-                appOnlyNumber="\D"
-                name="userID"
-                minlength="10"
-                maxlength="10"
-                [(ngModel)]="guest.userID"
-                #userID="ngModel">
-        <div *ngIf="userID.invalid && (userID.dirty || userID.touched)" class="alert alert-danger input-error">
-            <div *ngIf="userID.errors.required">
-                User ID is required.
+<div fxLayout="row" fxLayoutAlign="end center" fxLayoutAlign.lt-md="center center" style="height: 100vh">
+    <div fxLayout="row" fxLayoutAlign="end" fxLayoutAlign.lt-md="center">
+        <form novalidate     class="login-form"
+                            *ngIf="guest.forgotPassword === false"
+                            #loginForm="ngForm"
+                            (ngSubmit)="login(guest)"
+                            [ngStyle.gt-sm]="{'margin-right': '10vh'}"
+                            fxLayout="column"
+                            fxLayoutAlign="center center">
+                            <!-- {{diagnostic}} -->
+            <input placeholder="UserID" class="number" required
+                    type="text"
+                    appOnlyNumber="\D"
+                    name="userID"
+                    minlength="10"
+                    maxlength="10"
+                    [(ngModel)]="guest.userID"
+                    #userID="ngModel">
+            <div *ngIf="userID.invalid && (userID.dirty || userID.touched)" class="alert alert-danger input-error">
+                <div *ngIf="userID.errors.required">
+                    User ID is required.
+                </div>
+                <div *ngIf="userID.errors.notDigits">
+                    User ID should consist of only digits.
+                </div>
+                <div *ngIf="userID.errors.minlength">
+                    10 digits are required.
+                </div>
             </div>
-            <div *ngIf="userID.errors.notDigits">
-                User ID should consist of only digits.
+            <br>
+            <input type="password" placeholder="Password" class="password" required
+                    name="password"
+                    [(ngModel)]="guest.password"
+                    #password="ngModel">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger input-error">
+                <div *ngIf="password.errors.required">
+                    Password is required.
+                </div>
             </div>
-            <div *ngIf="userID.errors.minlength">
-                10 digits are required.
+            <br>
+            <div style="align-self: baseline; padding-left: 27px;">
+                <a style="color: white" (click)="forgotPassword()">Forgot Password?</a>
             </div>
-        </div>
-        <br>
-        <input type="password" placeholder="Password" class="password" required
-                name="password"
-                [(ngModel)]="guest.password"
-                #password="ngModel">
-        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger input-error">
-            <div *ngIf="password.errors.required">
-                Password is required.
+            <br>
+            <div style="align-self: flex-end; padding-right: 27px;">
+                <button class="login-button" type="submit"
+                        mat-raised-button
+                        [disabled]="(userID.touched || password.touched) && loginForm.invalid"
+                        (click)="login(guest)">LOGIN</button>
             </div>
-        </div>
-        <br>
-        <div style="align-self: baseline; padding-left: 27px;">
-            <a style="color: white" href="#">Forgot Password?</a>
-        </div>
-        <br>
-        <div style="align-self: flex-end; padding-right: 27px;">
-            <button class="login-button" type="submit"
-                    mat-raised-button
-                    [disabled]="(userID.touched || password.touched) && loginForm.invalid"
-                    (click)="login(guest)">LOGIN</button>
-        </div>
-    </form>
-    <div class="login-form" *ngIf="guest.forgotPassword" action="" [ngStyle.gt-sm]="{'margin-right': '5%'}">
-        <input [(ngModel)]="guest.userID" placeholder="UserID" class="text">
-        <br>
-        <input [(ngModel)]="guest.password" type="password" placeholder="Password" class="password">
-        <br>
-        <a href="#">Forgot Password?</a>
-        <br>
-        <button mat-raised-button (click)="login(guest)">LOGIN</button>
+        </form>
+        <form class="login-form"
+                *ngIf="guest.forgotPassword"
+                #forgotPasswordForm="ngForm"
+                [ngStyle.gt-sm]="{'margin-right': '10vh'}">
+            <input [(ngModel)]="guest.userID" placeholder="UserID" class="text">
+            <br>
+            <button mat-raised-button (click)="generateNewPassword()">Generate New Password</button>
+        </form>
     </div>
 </div>
