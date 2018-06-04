@@ -51,6 +51,7 @@
         </form>
         <form class="login-form"
                 *ngIf="guest.forgotPassword"
+                [@forgotPasswordState]="guest.state"
                 #forgotPasswordForm="ngForm"
                 [ngStyle.gt-sm]="{'margin-right': '10vh'}">
             <input [(ngModel)]="guest.userID" placeholder="UserID" class="text">

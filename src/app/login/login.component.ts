@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Guest } from '../shared/guestUser';
@@ -10,7 +17,19 @@ import { AuthService } from '../services/auth.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [ LoginService ]
+  providers: [ LoginService ],
+  animations: [
+      trigger('forgotPasswordState', [
+        state('in', style({transform: 'translateX(0)'})),
+        transition('void => *', [
+          style({transform: 'translateX(-100%)'}),
+          animate(100)
+        ]),
+        transition('* => void', [
+          animate(100, style({transform: 'translateX(100%)'}))
+        ])
+      ])
+    ]
 })
 export class LoginComponent implements OnInit {
     guest: Guest = {
