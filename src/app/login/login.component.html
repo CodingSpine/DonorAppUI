@@ -48,6 +48,12 @@
                         [disabled]="(userID.touched || password.touched) && loginForm.invalid"
                         (click)="login(guest)">LOGIN</button>
             </div>
+            <div *ngIf="guest.incorrectCredentials" style="margin-top: 20px" class="alert alert-danger input-error">
+                <!-- *ngIf="password.errors.required" -->
+                <div >
+                    Incorrect Username and/or Password.
+                </div>
+            </div>
         </form>
         <form class="login-form"
                 *ngIf="guest.forgotPassword"

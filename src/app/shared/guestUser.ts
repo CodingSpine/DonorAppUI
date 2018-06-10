@@ -3,4 +3,5 @@ export class Guest {
     password: string;
     forgotPassword: boolean;
     isRegisteredUser: boolean;
+    incorrectCredentials: boolean;
 }

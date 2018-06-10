@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit {
         userID: "",
         password: "",
         forgotPassword: false,
-        isRegisteredUser: false
+        isRegisteredUser: false,
+        incorrectCredentials: false
     }
 
     login(guest: Guest): void {
@@ -44,7 +45,9 @@ export class LoginComponent implements OnInit {
         this.authService.login(guest).subscribe((response) => {
         //this.setMessage();
             //this.guest = guest;
-            if (this.authService.isLoggedIn) {
+            if (response.body.success === true) {//this.authService.isLoggedIn
+                this.authService.isLoggedIn = true;
+                guest.incorrectCredentials = false;
                 // if login successful do #loginForm.reset in html
 
                 // Get the redirect URL from our auth service
@@ -57,6 +60,7 @@ export class LoginComponent implements OnInit {
         },
         (error) => {
             console.log(error);
+            guest.incorrectCredentials = true;
         });
     }
 
