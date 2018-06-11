@@ -50,6 +50,11 @@ input.password{
     @extend %input-images;
 }
 
+.forgot-password-back-button {
+    background-image: url(images/outline-keyboard_arrow_left-24px.svg);
+    background-repeat: no-repeat;
+}
+
 .input-error {
     text-align: left;
     margin-top: -8px;
@@ -63,4 +68,38 @@ input.password{
     background-color: #fcbe08;
     color: white;
     font-weight: 600;
+}
+
+@keyframes activeform {
+    0% {
+        display: block;
+        opacity: 0.1;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes inactiveform {
+    0% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px);
+        display: none;
+    }
+}
+
+.activeform {
+    // animation: activeform 1s linear forwards
+}
+
+.inactiveform {
+
+    // animation: inactiveform 0.001s linear forwards;
+    // display: none;
 }

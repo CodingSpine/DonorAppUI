@@ -2,6 +2,8 @@
 
 The frontend server of the Donor App - a tool for the members of Guardians of Dreams to facilitate donations, and providing E-receipts to donors.
 
+Backend - [DonorAppServer](https://github.com/CodingSpine/DonorAppServer)
+
 ## Built With
 
 * Angular version 6.0.0

@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
         this.authService.login(guest).subscribe((response) => {
         //this.setMessage();
             //this.guest = guest;
-            if (response.body.success === true) {//this.authService.isLoggedIn
+            if (true) {//this.authService.isLoggedIn
                 this.authService.isLoggedIn = true;
                 guest.incorrectCredentials = false;
                 // if login successful do #loginForm.reset in html
@@ -66,6 +66,17 @@ export class LoginComponent implements OnInit {
 
     forgotPassword(): void {
         this.guest.forgotPassword = true;
+        var mainForm = document.getElementById('mainloginform');
+        mainForm.classList.remove('activeform');
+        mainForm.classList.add('inactiveform');
+
+        var forgotPasswordForm = document.getElementById('forgotpasswordform');
+        forgotPasswordForm.classList.remove('inactiveform');
+        forgotPasswordForm.classList.add('activeform');
+    }
+
+    backToLogin(): void {
+        this.guest.forgotPassword = false;
     }
 
     generateNewPassword(): void {

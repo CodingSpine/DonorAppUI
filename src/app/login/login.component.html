@@ -1,6 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="end center" fxLayoutAlign.lt-md="center center" style="height: 100vh">
     <div fxLayout="row" fxLayoutAlign="end" fxLayoutAlign.lt-md="center">
-        <form novalidate     class="login-form"
+        <form novalidate     class="login-form activeform"
+                            id="mainloginform"
                             *ngIf="guest.forgotPassword === false"
                             #loginForm="ngForm"
                             (ngSubmit)="login(guest)"
@@ -38,7 +39,7 @@
                 </div>
             </div>
             <br>
-            <div style="align-self: baseline; padding-left: 27px;">
+            <div style="align-self: baseline; padding-left: 27px; cursor: pointer">
                 <a style="color: white" (click)="forgotPassword()">Forgot Password?</a>
             </div>
             <br>
@@ -49,20 +50,27 @@
                         (click)="login(guest)">LOGIN</button>
             </div>
             <div *ngIf="guest.incorrectCredentials" style="margin-top: 20px" class="alert alert-danger input-error">
-                <!-- *ngIf="password.errors.required" -->
                 <div >
                     Incorrect Username and/or Password.
                 </div>
             </div>
         </form>
-        <form class="login-form"
+        <form class="login-form inactiveform"
+                id="forgotpasswordform"
                 *ngIf="guest.forgotPassword"
                 [@forgotPasswordState]="guest.state"
                 #forgotPasswordForm="ngForm"
-                [ngStyle.gt-sm]="{'margin-right': '10vh'}">
-            <input [(ngModel)]="guest.userID" placeholder="UserID" class="text">
-            <br>
-            <button mat-raised-button (click)="generateNewPassword()">Generate New Password</button>
+                [ngStyle.gt-sm]="{'margin-right': '10vh'}"
+                fxLayout="column"
+                fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="start">
+                <span style="height: 21px; width: 21px" class="forgot-password-back-button"></span><span style="color: white; line-height: 24px" (click)="backToLogin()">Back</span>
+            </div>
+            <div style="width: 100%">
+                <input [(ngModel)]="guest.userID" placeholder="Confirm UserID" class="number">
+                <br>
+                <button mat-raised-button (click)="generateNewPassword()">Generate New Password</button>
+            </div>
         </form>
     </div>
 </div>
