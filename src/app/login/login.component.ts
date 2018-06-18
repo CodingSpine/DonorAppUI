@@ -10,26 +10,14 @@ import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/fo
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Guest } from '../shared/guestUser';
 import { Router } from '@angular/router';
-import { LoginService } from '../services/login.service';
-import { AuthService } from '../services/auth.service';
+import { LoginService } from '../services/login/login.service';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [ LoginService ],
-  animations: [
-      trigger('forgotPasswordState', [
-        state('in', style({transform: 'translateX(0)'})),
-        transition('void => *', [
-          style({transform: 'translateX(-100%)'}),
-          animate(100)
-        ]),
-        transition('* => void', [
-          animate(100, style({transform: 'translateX(100%)'}))
-        ])
-      ])
-    ]
+  providers: [ LoginService ]
 })
 export class LoginComponent implements OnInit {
     guest: Guest = {
@@ -42,10 +30,10 @@ export class LoginComponent implements OnInit {
 
     login(guest: Guest): void {
         console.log(guest);
-        this.authService.login(guest).subscribe((response) => {
+        this.loginService.login(guest).subscribe((response) => {
         //this.setMessage();
             //this.guest = guest;
-            if (true) {//this.authService.isLoggedIn
+            if (response.body.success === true) {//this.authService.isLoggedIn
                 this.authService.isLoggedIn = true;
                 guest.incorrectCredentials = false;
                 // if login successful do #loginForm.reset in html
@@ -63,6 +51,15 @@ export class LoginComponent implements OnInit {
             guest.incorrectCredentials = true;
         });
     }
+
+    // tryLogin(guest: Guest): void {
+    //     if (loginForm.invalid === true) {
+    //         return;
+    //     }
+    //     else {
+    //         this.login(guest);
+    //     }
+    // }
 
     forgotPassword(): void {
         this.guest.forgotPassword = true;
@@ -84,7 +81,7 @@ export class LoginComponent implements OnInit {
     }
 
     get diagnostic() { return JSON.stringify(this.guest); }
-    constructor(public authService: AuthService, public router: Router) {
+    constructor(public authService: AuthService, public loginService: LoginService, public router: Router) {
 
     }
 

@@ -16,6 +16,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
+import { baseURL } from './shared/baseurl';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{provide: 'BaseURL', useValue: baseURL}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
