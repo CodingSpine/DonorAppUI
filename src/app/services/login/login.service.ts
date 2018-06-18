@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Guest } from '../../shared/guestUser';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders,
-        HttpResponse, HttpErrorResponse } from '@angular/common/http';
+        HttpResponse } from '@angular/common/http';
+import { serviceErrorHandler } from '../../shared/serviceErrorHandler';
 import { baseURL } from '../../shared/baseurl';
 
 const headers = new HttpHeaders(
@@ -14,7 +15,7 @@ const headers = new HttpHeaders(
 @Injectable()
 export class LoginService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private serviceErrorHandler: serviceErrorHandler) { }
 
     login(guest: Guest): Observable<HttpResponse<any>> {
         return  this.http.post( baseURL + 'login/login',
@@ -27,7 +28,7 @@ export class LoginService {
                                 observe: 'response'
                             })
                             .pipe(
-                                  catchError(this.handleError)
+                                  catchError(this.serviceErrorHandler.handleError)
                               );
                             // .subscribe(response => {
                             // this.isLoggedIn = true;
@@ -50,24 +51,5 @@ export class LoginService {
         //this.isLoggedIn = false;
     }
 
-    /**
-    * Handle Http operation that failed.
-    * Let the app continue.
-    * @param operation - name of the operation that failed
-    * @param result - optional value to return as the observable result
-    */
-    private handleError(error: HttpErrorResponse) {
-        if (error.error instanceof ErrorEvent) {
-        // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
-        } else {
-        // The backend returned an unsuccessful response code.
-        // The response body may contain clues as to what went wrong,
-            console.error(
-              `Backend returned code ${error.status}, ` +
-              `body was: ${error.error.err}`);
-        }
-        // return an observable with a user-facing error message
-        return throwError(error.error);
-    };
+
 }

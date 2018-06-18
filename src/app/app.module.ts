@@ -17,6 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 import { baseURL } from './shared/baseurl';
+import { serviceErrorHandler } from './shared/serviceErrorHandler';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { baseURL } from './shared/baseurl';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [{provide: 'BaseURL', useValue: baseURL}],
+  providers: [{provide: 'BaseURL', useValue: baseURL},
+                serviceErrorHandler],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

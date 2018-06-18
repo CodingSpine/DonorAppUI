@@ -17,7 +17,7 @@ import { AuthService } from '../services/auth/auth.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [ LoginService ]
+  providers: [ LoginService]
 })
 export class LoginComponent implements OnInit {
     guest: Guest = {
