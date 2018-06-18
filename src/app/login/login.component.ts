@@ -17,7 +17,19 @@ import { AuthService } from '../services/auth/auth.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [ LoginService]
+  providers: [ LoginService],
+  // animations: [
+  //     trigger('slideForm', [
+  //         state('*', style({opacity: 1, transform: 'translateX(0)'})),
+  //         transition(':enter', [
+  //             style({transform: 'translateX(-100%)', opacity: 0}),
+  //             animate('200ms ease-in')
+  //         ]),
+  //         transition(':leave', [
+  //             animate('200ms ease-out', style({transform: 'translateX(100%)', opacity: 0}))
+  //         ])
+  //     ])
+  // ]
 })
 export class LoginComponent implements OnInit {
     guest: Guest = {
@@ -27,6 +39,7 @@ export class LoginComponent implements OnInit {
         isRegisteredUser: false,
         incorrectCredentials: false
     }
+    // forgotPasswordForm = 'hidden';
 
     login(guest: Guest): void {
         console.log(guest);
@@ -67,9 +80,11 @@ export class LoginComponent implements OnInit {
         mainForm.classList.remove('activeform');
         mainForm.classList.add('inactiveform');
 
-        var forgotPasswordForm = document.getElementById('forgotpasswordform');
-        forgotPasswordForm.classList.remove('inactiveform');
-        forgotPasswordForm.classList.add('activeform');
+        setTimeout(function(){
+            var forgotPasswordForm = document.getElementById('forgotpasswordform');
+            forgotPasswordForm.classList.remove('inactiveform');
+            forgotPasswordForm.classList.add('activeform');
+        },10);
     }
 
     backToLogin(): void {

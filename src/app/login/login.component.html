@@ -64,15 +64,19 @@
                 #forgotPasswordForm="ngForm"
                 [ngStyle.gt-sm]="{'margin-right': '10vh'}"
                 fxLayout="column"
-                fxLayoutAlign="center center">
-            <div fxLayout="row" fxLayoutAlign="start">
-                <span style="height: 21px; width: 21px" class="forgot-password-back-button"></span><span style="color: white; line-height: 24px" (click)="backToLogin()">Back</span>
+                fxLayoutAlign="space-between">
+            <div fxLayout="row"
+                 fxLayoutAlign="start"
+                 style="padding-top: 15px; padding-left: 10px; cursor: pointer"
+                 (click)="backToLogin()">
+                <span style="height: 21px; width: 21px" class="forgot-password-back-button"></span><span style="color: white; line-height: 24px">Back</span>
             </div>
             <div style="width: 100%">
                 <input [(ngModel)]="guest.userID" placeholder="Confirm UserID" class="number">
                 <br>
                 <button mat-raised-button (click)="generateNewPassword()">Generate New Password</button>
             </div>
+            <div></div>
         </form>
     </div>
 </div>

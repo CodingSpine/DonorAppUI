@@ -72,7 +72,7 @@ input.password{
 
 @keyframes activeform {
     0% {
-        display: block;
+        // display: block;
         opacity: 0.1;
         transform: translateY(-30px);
     }
@@ -95,11 +95,11 @@ input.password{
 }
 
 .activeform {
-    // animation: activeform 1s linear forwards
+    animation: activeform 0.5s linear forwards
 }
 
 .inactiveform {
-
-    // animation: inactiveform 0.001s linear forwards;
+    transform: translateY(-30px);
+    // animation: inactiveform 0.5s linear forwards;
     // display: none;
 }
