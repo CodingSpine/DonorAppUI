@@ -18,15 +18,19 @@ export class DashboardComponent implements OnInit {
 
     sideNavToggle(): void {
         var sidenavElement = document.querySelector('#sidenav');
-        var container = document.querySelector('#dashboard-container');
+        var mainContent = document.querySelector('#main-content');
         if (sidenavElement.classList.contains('sidenav-closed')){
             sidenavElement.classList.add('sidenav-open');
+            mainContent.classList.add('main-content-blurred');
             sidenavElement.classList.remove('sidenav-closed');
+            mainContent.classList.remove('main-content-focused');
             // container
         }
         else {
             sidenavElement.classList.add('sidenav-closed');
+            mainContent.classList.add('main-content-focused');
             sidenavElement.classList.remove('sidenav-open');
+            mainContent.classList.remove('main-content-blurred');
         }
     }
 
