@@ -1,7 +1,23 @@
 <div style="height: 100vh;  background-color: white" id="dashboard-container">
-    <div id="sidenav" class="sidenav-closed sidenav">
-        <div style="text-align: right; padding-right: 12px; font-size:30px;cursor:pointer; color: white" (click)="sideNavToggle()">
-            &#9776;
+    <div id="sidenav" class="sidenav-closed sidenav" (mouseout)="sideNavMinimize()">
+        <div>
+            <div style="text-align: right; padding-right: 12px; font-size:30px;cursor:pointer;" (click)="sideNavToggle()">
+                &#9776;
+            </div>
+            <div (mouseover)="sideNavPreview()">
+                <div>
+                    Hi, Ray
+                </div>
+                <ul class="sidenav-list">
+                    <li>My Profile</li>
+                    <li>OTDs</li>
+                    <li>Events</li>
+                    <li>80G</li>
+                    <li>Payment Gateway</li>
+                    <li>Receipts</li>
+                    <li>Logout</li>
+                </ul>
+            </div>
         </div>
     </div>
 

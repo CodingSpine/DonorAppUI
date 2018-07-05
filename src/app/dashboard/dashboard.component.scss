@@ -3,7 +3,14 @@
 //     visibility: visible !important;
 // }
 
+.main-content {
+    margin-left: 50px;
+    transition: 0.5s;
+}
 
+.main-content-blurred {
+    margin-left: 250px;
+}
 
 .sidenav {
     height: 100%;
@@ -13,6 +20,7 @@
     top: 0;
     left: 0;
     background-color: #111;
+    color: white;
     overflow-x: hidden;
     transition: 0.5s;
 }
@@ -21,11 +29,12 @@
     width: 250px;
 }
 
-.main-content {
-    margin-left: 50px;
-    transition: 0.5s;
-}
-
-.main-content-blurred {
-    margin-left: 250px;
+.sidenav-list {
+    text-align: left;
+    font-size: 20px;
+    white-space: nowrap;
+    li {
+        margin: 50px 0;
+        cursor: pointer;
+    }
 }

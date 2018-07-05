@@ -8,30 +8,47 @@ import {FormControl} from '@angular/forms';
 })
 export class DashboardComponent implements OnInit {
     mode = new FormControl('over');
+    toggleOpened = false;
+    sidenavElement;
+    mainContent;
+
     constructor() {
 
     }
 
     ngOnInit() {
-
+        this.sidenavElement = document.querySelector('#sidenav');
+        this.mainContent = document.querySelector('#main-content');
     }
 
     sideNavToggle(): void {
-        var sidenavElement = document.querySelector('#sidenav');
-        var mainContent = document.querySelector('#main-content');
-        if (sidenavElement.classList.contains('sidenav-closed')){
-            sidenavElement.classList.add('sidenav-open');
-            mainContent.classList.add('main-content-blurred');
-            sidenavElement.classList.remove('sidenav-closed');
-            mainContent.classList.remove('main-content-focused');
-            // container
+        if (this.sidenavElement.classList.contains('sidenav-closed')){
+            this.sidenavElement.classList.add('sidenav-open');
+            this.mainContent.classList.add('main-content-blurred');
+            this.sidenavElement.classList.remove('sidenav-closed');
+            this.mainContent.classList.remove('main-content-focused');
+            this.toggleOpened = true;
         }
         else {
-            sidenavElement.classList.add('sidenav-closed');
-            mainContent.classList.add('main-content-focused');
-            sidenavElement.classList.remove('sidenav-open');
-            mainContent.classList.remove('main-content-blurred');
+            this.sidenavElement.classList.add('sidenav-closed');
+            this.mainContent.classList.add('main-content-focused');
+            this.sidenavElement.classList.remove('sidenav-open');
+            this.mainContent.classList.remove('main-content-blurred');
+            this.toggleOpened = false;
         }
+    }
+
+    sideNavMinimize(): void {
+        if (!this.toggleOpened){
+            this.sidenavElement.classList.remove('sidenav-open');
+        }
+    }
+
+    sideNavPreview(): void {
+        if (!this.toggleOpened){
+            this.sidenavElement.classList.add('sidenav-open');
+        }
+
     }
 
 }
