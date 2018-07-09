@@ -17,7 +17,7 @@ import { AuthService } from '../services/auth/auth.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [ LoginService],
+  providers: [ LoginService, AuthService],
   // animations: [
   //     trigger('slideForm', [
   //         state('*', style({opacity: 1, transform: 'translateX(0)'})),

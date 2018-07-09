@@ -47,8 +47,9 @@ export class LoginService {
                             // });
     }
 
-    logout(): void {
-        //this.isLoggedIn = false;
+    logout() {
+        return this.http.get( baseURL + 'login/logout')
+                .pipe(catchError(this.serviceErrorHandler.handleError));
     }
 
 

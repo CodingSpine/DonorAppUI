@@ -1,6 +1,6 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './services/auth-guard/auth-guard.service';
+import { AuthGuardService } from './services/auth-guard/auth-guard.service';
 import { AuthService } from './services/auth/auth.service';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -12,7 +12,7 @@ const routes: Routes = [
     {
         path: 'dashboard',
         component: DashboardComponent,
-        // canActivate: [AuthGuard],
+        // canActivate: [AuthGuardService],
         data: {title: 'Dashboard'}
     },
     { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -25,7 +25,7 @@ const routes: Routes = [
         routes,
         { enableTracing: true }) ], // -> This is only for debugging, remove the entire object before release
   providers: [
-        AuthGuard,
+        AuthGuardService,
         AuthService
       ]
 })

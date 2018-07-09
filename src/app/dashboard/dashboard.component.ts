@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
+import { LoginService } from '../services/login/login.service';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  providers: [ LoginService, AuthService]
 })
 export class DashboardComponent implements OnInit {
     mode = new FormControl('over');
@@ -12,7 +15,7 @@ export class DashboardComponent implements OnInit {
     sidenavElement;
     mainContent;
 
-    constructor() {
+    constructor(private authService: AuthService, private loginService: LoginService) {
 
     }
 
@@ -49,6 +52,15 @@ export class DashboardComponent implements OnInit {
             this.sidenavElement.classList.add('sidenav-open');
         }
 
+    }
+
+    logout(): void {
+        this.loginService.logout().subscribe((response) => {
+            this.authService.isLoggedIn = false;
+        },
+        (error) => {
+            console.log(error);
+        });
     }
 
 }
